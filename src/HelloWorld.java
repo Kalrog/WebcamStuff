@@ -22,7 +22,7 @@ public class HelloWorld {
 			
 			img = cam.getImage();
 			
-			img = gary.apply();
+			img = gary.apply(img);
 			
 			g = dis.getBuffer().getDrawGraphics();
 			

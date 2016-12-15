@@ -2,7 +2,8 @@ import java.awt.image.BufferedImage;
 
 public class GrayScaleConverter extends ImageModifier {
 	public GrayScaleConverter() {}
-	@override
+	
+	@Override
 	public BufferedImage apply(BufferedImage org) {
 		BufferedImage img = new BufferedImage(org.getWidth(), org.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		for(int x = 0; x < img.getWidth(); x++){
