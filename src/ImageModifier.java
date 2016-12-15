@@ -1,5 +1,7 @@
 import java.awt.image.BufferedImage;
 
 public abstract class ImageModifier {
-	abstract BufferedImage apply();
+	public BufferedImage apply(BufferedImage img) {
+		return null;
+	}
 }
