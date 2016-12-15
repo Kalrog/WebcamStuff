@@ -18,9 +18,9 @@ public class HelloWorld {
 		
 		GrayScaleConverter gary = new GrayScaleConverter();
 		
-		Kernel gauß = new Kernel(new int[][]{{1,2,1},
-										 {2,4,2},
-										 {1,2,1}});
+		Kernel gauß = new Kernel(new int[][]{{1,0,-1},
+										     {2,0,-2},
+									     	 {1,0,-1}});
 		
 		while(dis != null && cam.isImageNew()){
 			
