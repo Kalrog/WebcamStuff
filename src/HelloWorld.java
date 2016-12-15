@@ -16,9 +16,13 @@ public class HelloWorld {
 		
 		Graphics g;
 		
+		GrayScaleConverter gary = new GrayScaleConverter();
+		
 		while(dis != null && cam.isImageNew()){
 			
 			img = cam.getImage();
+			
+			img = gary.apply();
 			
 			g = dis.getBuffer().getDrawGraphics();
 			
