@@ -35,13 +35,15 @@ public class Kernel extends ImageModifier {
 						total[3] += rgb[3] * values[yd + 1][xd + 1];
 					}
 				}
-				
-				if (kernelsum != 0){
-				for(int i = 1;i <= 3; i++){
-					total[i] /= kernelsum;
+
+				for (int i = 1; i <= 3; i++) {
+					total[i] = Math.abs(total[i]);
+					if (kernelsum != 0) {
+						total[i] /= kernelsum;
+					}
+
 				}
-				}
-				
+
 				int argb = ColorConverter.makeRGB(total);
 				img.setRGB(x, y, argb);
 			}
