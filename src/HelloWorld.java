@@ -18,11 +18,17 @@ public class HelloWorld {
 		
 		GrayScaleConverter gary = new GrayScaleConverter();
 		
+		Kernel gauß = new Kernel(new int[][]{{1,2,1},
+										 {2,4,2},
+										 {1,2,1}});
+		
 		while(dis != null && cam.isImageNew()){
 			
 			img = cam.getImage();
 			
 			img = gary.apply(img);
+			
+			img = gauß.apply(img);
 			
 			g = dis.getBuffer().getDrawGraphics();
 			
