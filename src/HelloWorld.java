@@ -1,20 +1,32 @@
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import com.github.sarxos.webcam.Webcam;
 
 public class HelloWorld {
+	
 	public static void main (String[] args){
-		Webcam webcam = Webcam.getDefault();
-		webcam.open();
-		try {
-			ImageIO.write(webcam.getImage(), "PNG", new File("HelloWorld.png"));
-		} catch (IOException e) {
-			System.out.println("Failed to save Image printing Stack Trace");
-			e.printStackTrace();
+		
+		Webcam cam = Webcam.getDefault();
+		cam.open();
+		
+		Display dis = new Display(cam.getViewSize().width,cam.getViewSize().height);
+		
+		BufferedImage img;
+		
+		Graphics g;
+		
+		while(dis != null && cam.isImageNew()){
+			
+			img = cam.getImage();
+			
+			g = dis.getBuffer().getDrawGraphics();
+			
+			g.drawImage(img, 0, 0, null);
+			
+			dis.getBuffer().show();
 		}
 	}
+	
 	
 }
