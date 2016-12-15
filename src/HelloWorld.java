@@ -26,7 +26,7 @@ public class HelloWorld {
 
 			img = cam.getImage();
 
-			img = gary.apply(img);
+			//img = gary.apply(img);
 
 			img = gauss.apply(img);
 			
@@ -34,7 +34,7 @@ public class HelloWorld {
 
 			g = dis.getBuffer().getDrawGraphics();
 
-			g.drawImage(img, 0, 0, null);
+			g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
 
 			dis.getBuffer().show();
 		}
