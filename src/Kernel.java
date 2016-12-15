@@ -36,8 +36,10 @@ public class Kernel extends ImageModifier {
 					}
 				}
 				
+				if (kernelsum != 0){
 				for(int i = 1;i <= 3; i++){
 					total[i] /= kernelsum;
+				}
 				}
 				
 				int argb = ColorConverter.makeRGB(total);
