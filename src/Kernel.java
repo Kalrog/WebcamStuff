@@ -7,8 +7,8 @@ public class Kernel extends ImageModifier {
 	public Kernel(int[][] values) {
 		this.values = values;
 		this.kernelsum = 0;
-		for (int x = 1; x < values[1].length; x++) {
-			for (int y = 1; y < values.length; y++) {
+		for (int x = 0; x < values[1].length; x++) {
+			for (int y = 0; y < values.length; y++) {
 				kernelsum += values[y][x];
 			}
 		}
