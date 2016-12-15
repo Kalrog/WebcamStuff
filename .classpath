@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/Webcam Capture/webcam-capture-0.3.10.jar" sourcepath="libs/Webcam Capture/src">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/jonathan/Documents/JavaWorkspace/WebcamStuff/libs/Webcam%20Capture/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/Webcam Capture/libs/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="libs/Webcam Capture/libs/bridj-0.6.2.jar"/>
+	<classpathentry kind="lib" path="slf4j-jdk14-1.7.22.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
