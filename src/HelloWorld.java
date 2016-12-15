@@ -26,7 +26,7 @@ public class HelloWorld {
 			
 			img = cam.getImage();
 			
-			img = gary.apply(img);
+			//img = gary.apply(img);
 			
 			img = gauß.apply(img);
 			
