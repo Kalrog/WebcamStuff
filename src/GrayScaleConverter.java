@@ -1,4 +1,6 @@
 
-public class GrayScaleConverter {
-
+public class GrayScaleConverter extends ImageModifier {
+	public BufferedImage apply() {
+		
+	}
 }
