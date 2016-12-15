@@ -1,6 +1,6 @@
 
 public class ColorConverter {
-	public int[] convertToSingleColors(int rgb) {
+	public int[] extractRGB(int rgb) {
 		int alpha = (rgb >> 24) & 0x000000FF;
 		int red = (rgb >> 16) & 0x000000FF;
 		int green = (rgb >> 8) & 0x000000FF;
@@ -9,7 +9,7 @@ public class ColorConverter {
 		return result;
 	}
 
-	public int convertToOneColor(int[] colors) {
+	public int makeRGB(int[] colors) {
 		return colors[3] | colors[2] << 8 | colors[1] << 16 | colors[0] << 24;
 	}
 }
