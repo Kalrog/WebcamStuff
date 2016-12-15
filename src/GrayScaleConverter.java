@@ -17,7 +17,7 @@ public class GrayScaleConverter extends ImageModifier {
 				int green = (rgb >> 8 ) & 0x000000FF;
 				int blue = (rgb) & 0x000000FF;
 				int average = (red + green + blue)/3;
-				int argb = blue | green << 8 | red << 16 | alpha << 24;
+				int argb = average | average << 8 | average << 16 | alpha << 24;
 				img.setRGB(x, y, argb);
 			}
 		}
