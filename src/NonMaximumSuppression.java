@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 
 public class NonMaximumSuppression {
 	public int[][] apply(int org[][][]){
-		int[][] img;
+		int[][] img = new int[org[0].length][org[0][0].length];
 		for (int x = 1; x < org[0][0].length - 1; x++) {
 			for (int y = 1; y < org[0].length - 1; y++) {
 				int nx, ny;

@@ -2,8 +2,8 @@ import java.awt.image.BufferedImage;
 
 public class Kernel extends ImageModifier {
 	int[][] values;
-	int possum;
-	int negsum;
+	public int possum;
+	public int negsum;
 	int threshold;
 
 	public Kernel(int[][] values) {
