@@ -44,8 +44,11 @@ public class Sobel {
 					int colorGx[]=ColorConverter.extractRGB(Gx.getRGB(x, y));
 					int colorGy[]=ColorConverter.extractRGB(Gy.getRGB(x, y));
 					for (int i = 1; i <= 3; i++) {
-						colorGx[i] = Math.abs((int) ColorConverter.map(colorGx[i], 0, 255, -127.5, 127.5));
-						colorGy[i] = (int) ColorConverter.map(colorGy[i], 0, 255, -127.5, 127.5);
+						colorGx[i] = (int) ColorConverter.map(colorGx[i]
+															, 0, 255, -127.5, 127.5);
+						colorGy[i] = (int) (ColorConverter.map(colorGy[i], 0, 255, -127.5, 127.5) 
+								* Math.copySign(1,colorGx[i]));
+						colorGx[i] = Math.abs(colorGx[i]);
 						total[i] = (int) ColorConverter.map(
 								Math.atan2(colorGy[i],colorGx[i])
 								,-Math.PI/2,Math.PI/2
