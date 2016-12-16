@@ -42,8 +42,8 @@ public class HelloWorld {
 			
 			g = dis.getBuffer().getDrawGraphics();
 
-			//g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
-			g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
+			g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
+			//g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
 			
 			dis.getBuffer().show();
 		}
