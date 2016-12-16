@@ -34,6 +34,8 @@ public class HelloWorld {
 
 		Threshold thre = new Threshold();
 		
+		Invert inv = new Invert();
+		
 		long time = System.currentTimeMillis();
 		int frames = 0;
 		
@@ -48,11 +50,13 @@ public class HelloWorld {
 			img = cam.getImage();
 			
 			log("Starting Grayscale conversion");
-			img = gary.apply(img);
+			//img = gary.apply(img);
 			log("done");
 			
+			img = inv.apply(img);
+			
 			log("Starting Gauss blur");
-			img = gausss.apply(img);
+			//img = gausss.apply(img);
 			//img = gauss.apply(img);
 			log("done");
 			
