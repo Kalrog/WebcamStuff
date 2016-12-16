@@ -18,14 +18,16 @@ public class HelloWorld {
 
 		GrayScaleConverter gary = new GrayScaleConverter();
 
-		Kernel gauss = new Kernel(new int[][] { { 1, 2, 1 }, { 2, 4, 2 }, { 1, 2, 1 } }, 0);
+		Kernel gauss = new Kernel(new int[][] { { 1, 2, 1 }, { 2, 4, 2 }, { 1, 2, 1 } });
 
-		Kernel sobelv = new Kernel(new int[][] { { 1, 0, -1 }, { 2, 0, -2 }, { 1, 0, -1 } }, 150);
+		Kernel sobelv = new Kernel(new int[][] { { 1, 0, -1 }, { 2, 0, -2 }, { 1, 0, -1 } });
 		
-		Kernel sobelh = new Kernel(new int[][] { { 1, 2, 1 }, { 0, 0, 0 }, { -1, -2, -1 } }, 150);
+		Kernel sobelh = new Kernel(new int[][] { { 1, 2, 1 }, { 0, 0, 0 }, { -1, -2, -1 } });
 		
 		Average aver = new Average();
 
+		Threshold thre = new Threshold();
+		
 		while (dis != null && cam.isImageNew()) {
 
 			img = cam.getImage();
@@ -40,10 +42,12 @@ public class HelloWorld {
 			
 			img = aver.apply(one, two);
 			
+			img = thre.apply(img, 100);
+			
 			g = dis.getBuffer().getDrawGraphics();
 
-			g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
-			//g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
+			//g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
+			g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
 			
 			dis.getBuffer().show();
 		}

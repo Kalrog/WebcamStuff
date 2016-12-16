@@ -30,7 +30,7 @@ public class Display extends JFrame implements ComponentListener {
 		canvas.setBackground(Color.BLACK);
 		canvas.setIgnoreRepaint(true);
 		
-		this.addComponentListener(this);
+		//this.addComponentListener(this);
 		panel.add(canvas);
 		this.add(panel);
 		

@@ -5,9 +5,8 @@ public class Kernel extends ImageModifier {
 	int kernelsum;
 	int threshold;
 
-	public Kernel(int[][] values, int threshold) {
+	public Kernel(int[][] values) {
 		this.values = values;
-		this.threshold = threshold;
 		this.kernelsum = 0;
 		for (int x = 0; x < values[0].length; x++) {
 			for (int y = 0; y < values.length; y++) {
@@ -42,9 +41,6 @@ public class Kernel extends ImageModifier {
 					total[i] = Math.abs(total[i]);
 					if (kernelsum != 0) {
 						total[i] /= kernelsum;
-					}
-					if(total[i] < threshold) {
-						total[i] = 0;
 					}
 				}
 
