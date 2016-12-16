@@ -9,20 +9,20 @@ public class NonMaximumSuppression {
 				int gradient = ColorConverter.extractRGB(grad.getRGB(x, y))[1];
 				int nx, ny;
 				if( gradient < 32 ) {
-					nx = 0;
-					ny = 1;
-				} else if( gradient < 96) {
-					nx = 1;
-					ny = -1;
-				} else if( gradient < 160) {
 					nx = 1;
 					ny = 0;
+				} else if( gradient < 96) {
+					nx = -1;
+					ny = 1;
+				} else if( gradient < 160) {
+					nx = 0;
+					ny = 1;
 				} else if( gradient < 224) {
 					nx = 1;
 					ny = 1;
 				} else {
-					nx = 0;
-					ny = 1;
+					nx = 1;
+					ny = 0;
 				}
 				if (ColorConverter.extractRGB(stre.getRGB(x + nx, y + ny))[1] > ColorConverter.extractRGB(stre.getRGB(x, y))[1] || 
 						ColorConverter.extractRGB(stre.getRGB(x - nx, y - ny))[1] > ColorConverter.extractRGB(stre.getRGB(x, y))[1]) {

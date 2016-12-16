@@ -9,6 +9,7 @@ public class Kernel extends ImageModifier {
 	public Kernel(int[][] values) {
 		this.values = values;
 		this.possum = 0;
+		this.negsum = 0;
 		for (int x = 0; x < values[0].length; x++) {
 			for (int y = 0; y < values.length; y++) {
 				if( values[y][x] > 0){

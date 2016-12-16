@@ -24,9 +24,9 @@ public class HelloWorld {
 		
 		Kernel gausss = new Kernel(new int[][] { { 1, 2, 3, 2, 1 }, { 2, 3, 4, 3, 2 }, { 3, 4, 5, 4, 3 }, { 2, 3, 4, 3, 2 }, { 1, 2, 3, 2, 1 } });
 
-		Kernel sobelv = new Kernel(new int[][] { { 1, 0, -1 }, { 2, 0, -2 }, { 1, 0, -1 } });
+		Kernel sobelv = new Kernel(new int[][] { { 3, 0, -3 }, { 10, 0, -10 }, { 3, 0, -3 } });
 		
-		Kernel sobelh = new Kernel(new int[][] { { 1, 2, 1 }, { 0, 0, 0 }, { -1, -2, -1 } });
+		Kernel sobelh = new Kernel(new int[][] { { 3, 10, 3 }, { 0, 0, 0 }, { -3, -10, -3 } });
 		
 		Average aver = new Average();
 		
@@ -87,7 +87,7 @@ public class HelloWorld {
 			log("Starting Sobel Combine");
 			stre = sob.combine(one, two);
 			log("done");
-			
+			//img = stre;
 			img = nms.apply(grad, stre);
 			
 			g = dis.getBuffer().getDrawGraphics();
