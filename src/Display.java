@@ -6,12 +6,18 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JCheckBox;
 
 public class Display extends JFrame implements ComponentListener {
 
 	private JPanel panel;
 	private Canvas canvas;
-
+	public JCheckBox check1 = new JCheckBox("BW");
+	public JCheckBox check2 = new JCheckBox("Inv");
+	public JCheckBox check3 = new JCheckBox("Gauss");
+	public JCheckBox check4 = new JCheckBox("Sobel");
+	public JCheckBox check5 = new JCheckBox("BW");
+	
 	/**
 	 * Creates a new display with given width and height
 	 * @param width the width
@@ -23,6 +29,12 @@ public class Display extends JFrame implements ComponentListener {
 		panel = new JPanel();
 		canvas = new Canvas();
 		
+	    panel.add(check1);
+	    panel.add(check2);
+	    panel.add(check3);
+	    panel.add(check4);
+	    panel.add(check5);
+	    
 		this.setSize(width, height);
 		panel.setSize(this.getWidth(), this.getHeight());
 		canvas.setSize(this.getWidth(), this.getHeight());

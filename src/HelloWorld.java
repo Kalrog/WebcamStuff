@@ -6,13 +6,14 @@ import com.github.sarxos.webcam.Webcam;
 public class HelloWorld {
 
 	static long logtime = System.currentTimeMillis();
-	
+
 	public static void main(String[] args) {
 
 		Webcam cam = Webcam.getDefault();
 		cam.open();
 
-		Display dis = new Display(cam.getViewSize().width, cam.getViewSize().height);
+		Display dis = new Display(cam.getViewSize().width,
+				cam.getViewSize().height);
 
 		BufferedImage img, one, two, grad, stre;
 
@@ -20,91 +21,106 @@ public class HelloWorld {
 
 		GrayScaleConverter gary = new GrayScaleConverter();
 
-		Kernel gauss = new Kernel(new int[][] { { 1, 2, 1 }, { 2, 4, 2 }, { 1, 2, 1 } });
-		
-		Kernel gausss = new Kernel(new int[][] { { 1, 2, 3, 2, 1 }, { 2, 3, 4, 3, 2 }, { 3, 4, 5, 4, 3 }, { 2, 3, 4, 3, 2 }, { 1, 2, 3, 2, 1 } });
+		Kernel gauss = new Kernel(new int[][] { { 1, 2, 1 }, { 2, 4, 2 },
+				{ 1, 2, 1 } });
 
-		Kernel sobelv = new Kernel(new int[][] { { 3, 0, -3 }, { 10, 0, -10 }, { 3, 0, -3 } });
-		
-		Kernel sobelh = new Kernel(new int[][] { { 3, 10, 3 }, { 0, 0, 0 }, { -3, -10, -3 } });
-		
+		Kernel gausss = new Kernel(new int[][] { { 1, 2, 3, 2, 1 },
+				{ 2, 3, 4, 3, 2 }, { 3, 4, 5, 4, 3 }, { 2, 3, 4, 3, 2 },
+				{ 1, 2, 3, 2, 1 } });
+
+		Kernel sobelv = new Kernel(new int[][] { { 3, 0, -3 }, { 10, 0, -10 },
+				{ 3, 0, -3 } });
+
+		Kernel sobelh = new Kernel(new int[][] { { 3, 10, 3 }, { 0, 0, 0 },
+				{ -3, -10, -3 } });
+
 		Average aver = new Average();
-		
+
 		Sobel sob = new Sobel();
 
 		Threshold thre = new Threshold();
-		
+
 		Invert inv = new Invert();
-		
+
 		NonMaximumSuppression nms = new NonMaximumSuppression();
-		
+
 		long time = System.currentTimeMillis();
 		int frames = 0;
-		
+
 		while (dis != null && cam.isImageNew()) {
-			
-			if(System.currentTimeMillis() - time > 1000){
+
+			if (System.currentTimeMillis() - time > 1000) {
 				time = System.currentTimeMillis();
-				System.out.println("FPS: "+frames);
+				System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 
 			img = cam.getImage();
+
+			if (dis.check1.isSelected() == true) {
+				log("Starting Grayscale conversion");
+				img = gary.apply(img);
+				log("done");
+			}
+
+			if (dis.check2.isSelected() == true) {
+				img = inv.apply(img);
+			}
+
+			if (dis.check3.isSelected() == true) {
+				log("Starting Gauss blur");
+				img = gauss.apply(img);
+				log("done");
+			}
 			
-			log("Starting Grayscale conversion");
-			img = gary.apply(img);
-			log("done");
-			
-			img = inv.apply(img);
-			
-			log("Starting Gauss blur");
-			//img = gausss.apply(img);
-			img = gauss.apply(img);
-			log("done");
-			
+			if (dis.check4.isSelected() == true) {
 			log("Starting Sobel Vertical");
 			one = sobelv.apply(img);
 			log("done");
-			
+
 			log("Starting Sobel Horizontal");
 			two = sobelh.apply(img);
 			log("done");
-			
-			log("Starting Threshold");
-			//one = thre.apply(two, 10);
-			log("done");
-			
-			log("Starting Threshold");
-			//two = thre.apply(one, 10);
-			log("done");
-			
-			//img = aver.apply(one, two);
-			
+
 			log("Starting Sobel Gradient");
 			grad = sob.makeGradient(two, one);
 			log("done");
-			
+
 			log("Starting Sobel Combine");
 			stre = sob.combine(one, two);
 			log("done");
-			//img = stre;
+
 			img = nms.apply(grad, stre);
+			}
 			
+			log("Starting Threshold");
+			// one = thre.apply(two, 10);
+			log("done");
+
+			log("Starting Threshold");
+			// two = thre.apply(one, 10);
+			log("done");
+
+			// img = aver.apply(one, two);
+
 			g = dis.getBuffer().getDrawGraphics();
 
-			//g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
-			//g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
+			if (dis.check5.isSelected() == true) {
+			g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
+			dis.addComponentListener(dis);
+			} else {
 			g.drawImage(img, 0, 0, null);
+			}
 			
 			dis.getBuffer().show();
-			
+
 			frames++;
 		}
 	}
 
-	public static void log(String message){
+	public static void log(String message) {
 		logtime = System.currentTimeMillis() - logtime;
-		System.out.println(logtime + " : " + message);
+		// System.out.println(logtime + " : " + message);
 		logtime = System.currentTimeMillis();
 	}
 }
