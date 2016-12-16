@@ -30,7 +30,16 @@ public class HelloWorld {
 
 		Threshold thre = new Threshold();
 		
+		long time = System.currentTimeMillis();
+		int frames = 0;
+		
 		while (dis != null && cam.isImageNew()) {
+			
+			if(Math.abs(time - System.currentTimeMillis()) > 1000){
+				time = System.currentTimeMillis();
+				System.out.println(frames);
+				frames = 0;
+			}
 
 			img = cam.getImage();
 
@@ -46,7 +55,7 @@ public class HelloWorld {
 			
 			img = sob.combine(one, two);
 			
-			img = thre.apply(img, 100);
+			img = thre.apply(img, 10);
 			
 			g = dis.getBuffer().getDrawGraphics();
 
@@ -54,6 +63,8 @@ public class HelloWorld {
 			g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
 			
 			dis.getBuffer().show();
+			
+			frames++;
 		}
 	}
 
