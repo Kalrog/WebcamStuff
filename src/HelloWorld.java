@@ -5,6 +5,8 @@ import com.github.sarxos.webcam.Webcam;
 
 public class HelloWorld {
 
+	static long logtime = System.currentTimeMillis();
+	
 	public static void main(String[] args) {
 
 		Webcam cam = Webcam.getDefault();
@@ -35,32 +37,54 @@ public class HelloWorld {
 		
 		while (dis != null && cam.isImageNew()) {
 			
-			if(Math.abs(time - System.currentTimeMillis()) > 1000){
+			if(System.currentTimeMillis() - time > 1000){
 				time = System.currentTimeMillis();
-				System.out.println(frames);
+				System.out.println("FPS: "+frames);
 				frames = 0;
 			}
 
 			img = cam.getImage();
-
+			
+			log("Starting Grayscale conversion");
 			img = gary.apply(img);
-
+			log("done");
+			
+			log("Starting Gauss blur");
 			img = gauss.apply(img);
+			img = gauss.apply(img);
+			log("done");
 			
+			log("Starting Sobel Vertical");
 			one = sobelv.apply(img);
+			log("done");
 			
+			log("Starting Sobel Horizontal");
 			two = sobelh.apply(img);
+			log("done");
+			
+			log("Starting Threshold");
+			two = thre.apply(two, 10);
+			log("done");
+			
+			log("Starting Threshold");
+			one = thre.apply(one, 10);
+			log("done");
 			
 			//img = aver.apply(one, two);
 			
-			img = sob.combine(one, two);
+			log("Starting Sobel Gradient");
+			img = sob.makeGradient(two, one);
+			log("done");
 			
-			img = thre.apply(img, 10);
+//			log("Starting Sobel Combine");
+//			img = sob.combine(one, two);
+//			log("done");
 			
 			g = dis.getBuffer().getDrawGraphics();
 
 			//g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
-			g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
+			//g.drawImage(img, 0, 0, cam.getViewSize().width, cam.getViewSize().height, null);
+			g.drawImage(img, 0, 0, null);
 			
 			dis.getBuffer().show();
 			
@@ -68,4 +92,9 @@ public class HelloWorld {
 		}
 	}
 
+	public static void log(String message){
+		logtime = System.currentTimeMillis() - logtime;
+		System.out.println(logtime + " : " + message);
+		logtime = System.currentTimeMillis();
+	}
 }

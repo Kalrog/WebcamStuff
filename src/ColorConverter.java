@@ -13,7 +13,7 @@ public class ColorConverter {
 		return colors[3] | colors[2] << 8 | colors[1] << 16 | colors[0] << 24;
 	}
 	
-	public static int map(int x, int in_min, int in_max, int out_min, int out_max)
+	public static double map(double x, double in_min, double in_max, double out_min, double out_max)
 	{
 	  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
