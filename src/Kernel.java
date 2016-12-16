@@ -3,9 +3,11 @@ import java.awt.image.BufferedImage;
 public class Kernel extends ImageModifier {
 	int[][] values;
 	int kernelsum;
+	int threshold;
 
-	public Kernel(int[][] values) {
+	public Kernel(int[][] values, int threshold) {
 		this.values = values;
+		this.threshold = threshold;
 		this.kernelsum = 0;
 		for (int x = 0; x < values[0].length; x++) {
 			for (int y = 0; y < values.length; y++) {
@@ -41,7 +43,9 @@ public class Kernel extends ImageModifier {
 					if (kernelsum != 0) {
 						total[i] /= kernelsum;
 					}
-
+					if(total[i] < threshold) {
+						total[i] = 0;
+					}
 				}
 
 				int argb = ColorConverter.makeRGB(total);
