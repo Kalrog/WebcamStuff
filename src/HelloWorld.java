@@ -24,9 +24,11 @@ public class HelloWorld {
 		Kernel gauss = new Kernel(new int[][] { { 1, 2, 1 }, { 2, 4, 2 },
 				{ 1, 2, 1 } });
 
-		Kernel gausss = new Kernel(new int[][] { { 1, 2, 3, 2, 1 },
-				{ 2, 3, 4, 3, 2 }, { 3, 4, 5, 4, 3 }, { 2, 3, 4, 3, 2 },
-				{ 1, 2, 3, 2, 1 } });
+		Kernel gausss = new Kernel(new int[][] { { 2, 4, 5, 4, 2 },
+												 { 4, 9,12, 9, 4 }, 
+												 { 5,12,15,12, 5 }, 
+												 { 4, 9,12, 9, 4 },
+												 { 2, 4, 5, 4, 2 } });
 
 		Kernel sobelv = new Kernel(new int[][] { { 3, 0, -3 }, { 10, 0, -10 },
 				{ 3, 0, -3 } });
@@ -43,6 +45,8 @@ public class HelloWorld {
 		Invert inv = new Invert();
 
 		NonMaximumSuppression nms = new NonMaximumSuppression();
+		
+		Hysteresis hys = new Hysteresis();
 
 		long time = System.currentTimeMillis();
 		int frames = 0;
@@ -70,6 +74,7 @@ public class HelloWorld {
 			if (dis.check3.isSelected() == true) {
 				log("Starting Gauss blur");
 				img = gauss.apply(img);
+				//img = gausss.apply(img);
 				log("done");
 			}
 			
@@ -89,8 +94,12 @@ public class HelloWorld {
 			log("Starting Sobel Combine");
 			stre = sob.combine(one, two);
 			log("done");
+			
+			//img = stre;
 
 			img = nms.apply(grad, stre);
+			
+			//img = hys.apply(img, 17, 8);
 			}
 			
 			log("Starting Threshold");
@@ -119,8 +128,8 @@ public class HelloWorld {
 	}
 
 	public static void log(String message) {
-		logtime = System.currentTimeMillis() - logtime;
+		//logtime = System.currentTimeMillis() - logtime;
 		// System.out.println(logtime + " : " + message);
-		logtime = System.currentTimeMillis();
+		//logtime = System.currentTimeMillis();
 	}
 }
