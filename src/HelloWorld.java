@@ -14,7 +14,7 @@ public class HelloWorld {
 
 		Display dis = new Display(cam.getViewSize().width, cam.getViewSize().height);
 
-		BufferedImage img, one, two;
+		BufferedImage img, one, two, grad, stre;
 
 		Graphics g;
 
@@ -36,6 +36,8 @@ public class HelloWorld {
 		
 		Invert inv = new Invert();
 		
+		NonMaximumSuppression nms = new NonMaximumSuppression();
+		
 		long time = System.currentTimeMillis();
 		int frames = 0;
 		
@@ -50,41 +52,43 @@ public class HelloWorld {
 			img = cam.getImage();
 			
 			log("Starting Grayscale conversion");
-			//img = gary.apply(img);
+			img = gary.apply(img);
 			log("done");
 			
 			img = inv.apply(img);
 			
 			log("Starting Gauss blur");
 			//img = gausss.apply(img);
-			//img = gauss.apply(img);
+			img = gauss.apply(img);
 			log("done");
 			
 			log("Starting Sobel Vertical");
-			//one = sobelv.apply(img);
+			one = sobelv.apply(img);
 			log("done");
 			
 			log("Starting Sobel Horizontal");
-			//two = sobelh.apply(img);
+			two = sobelh.apply(img);
 			log("done");
 			
 			log("Starting Threshold");
-			//two = thre.apply(two, 10);
+			//one = thre.apply(two, 10);
 			log("done");
 			
 			log("Starting Threshold");
-			//one = thre.apply(one, 10);
+			//two = thre.apply(one, 10);
 			log("done");
 			
 			//img = aver.apply(one, two);
 			
 			log("Starting Sobel Gradient");
-			//img = sob.makeGradient(two, one);
+			grad = sob.makeGradient(two, one);
 			log("done");
 			
-//			log("Starting Sobel Combine");
-//			img = sob.combine(one, two);
-//			log("done");
+			log("Starting Sobel Combine");
+			stre = sob.combine(one, two);
+			log("done");
+			
+			img = nms.apply(grad, stre);
 			
 			g = dis.getBuffer().getDrawGraphics();
 
