@@ -25,6 +25,8 @@ public class HelloWorld {
 		Kernel sobelh = new Kernel(new int[][] { { 1, 2, 1 }, { 0, 0, 0 }, { -1, -2, -1 } });
 		
 		Average aver = new Average();
+		
+		Sobel sob = new Sobel();
 
 		Threshold thre = new Threshold();
 		
@@ -40,7 +42,9 @@ public class HelloWorld {
 			
 			two = sobelh.apply(img);
 			
-			img = aver.apply(one, two);
+			//img = aver.apply(one, two);
+			
+			img = sob.combine(one, two);
 			
 			img = thre.apply(img, 100);
 			
