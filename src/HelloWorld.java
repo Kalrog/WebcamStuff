@@ -21,6 +21,8 @@ public class HelloWorld {
 		GrayScaleConverter gary = new GrayScaleConverter();
 
 		Kernel gauss = new Kernel(new int[][] { { 1, 2, 1 }, { 2, 4, 2 }, { 1, 2, 1 } });
+		
+		Kernel gausss = new Kernel(new int[][] { { 1, 2, 3, 2, 1 }, { 2, 3, 4, 3, 2 }, { 3, 4, 5, 4, 3 }, { 2, 3, 4, 3, 2 }, { 1, 2, 3, 2, 1 } });
 
 		Kernel sobelv = new Kernel(new int[][] { { 1, 0, -1 }, { 2, 0, -2 }, { 1, 0, -1 } });
 		
@@ -50,30 +52,30 @@ public class HelloWorld {
 			log("done");
 			
 			log("Starting Gauss blur");
-			img = gauss.apply(img);
-			img = gauss.apply(img);
+			img = gausss.apply(img);
+			//img = gauss.apply(img);
 			log("done");
 			
 			log("Starting Sobel Vertical");
-			one = sobelv.apply(img);
+			//one = sobelv.apply(img);
 			log("done");
 			
 			log("Starting Sobel Horizontal");
-			two = sobelh.apply(img);
+			//two = sobelh.apply(img);
 			log("done");
 			
 			log("Starting Threshold");
-			two = thre.apply(two, 10);
+			//two = thre.apply(two, 10);
 			log("done");
 			
 			log("Starting Threshold");
-			one = thre.apply(one, 10);
+			//one = thre.apply(one, 10);
 			log("done");
 			
 			//img = aver.apply(one, two);
 			
 			log("Starting Sobel Gradient");
-			img = sob.makeGradient(two, one);
+			//img = sob.makeGradient(two, one);
 			log("done");
 			
 //			log("Starting Sobel Combine");

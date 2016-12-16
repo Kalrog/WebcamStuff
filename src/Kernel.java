@@ -23,16 +23,16 @@ public class Kernel extends ImageModifier {
 	@Override
 	public BufferedImage apply(BufferedImage org) {
 		BufferedImage img = new BufferedImage(org.getWidth(), org.getHeight(), BufferedImage.TYPE_INT_ARGB);
-		for (int x = 1; x < img.getWidth() - 1; x++) {
-			for (int y = 1; y < img.getHeight() - 1; y++) {
+		for (int x = values[0].length/2; x < img.getWidth() - values[0].length/2; x++) {
+			for (int y = values.length/2; y < img.getHeight() - values.length/2; y++) {
 				int total[] = new int[4];
 				total[0] = ColorConverter.extractRGB(org.getRGB(x, y))[0];
-				for (int xd = -1; xd <= 1; xd++) {
-					for (int yd = -1; yd <= 1; yd++) {
+				for (int xd = -1*values[0].length/2; xd <= values[0].length/2; xd++) {
+					for (int yd = -1*values.length/2; yd <= values.length/2; yd++) {
 						int rgb[] = ColorConverter.extractRGB(org.getRGB(x + xd, y + yd));
-						total[1] += rgb[1] * values[yd + 1][xd + 1];
-						total[2] += rgb[2] * values[yd + 1][xd + 1];
-						total[3] += rgb[3] * values[yd + 1][xd + 1];
+						total[1] += rgb[1] * values[yd + values.length/2][xd + values[0].length/2];
+						total[2] += rgb[2] * values[yd + values.length/2][xd + values[0].length/2];
+						total[3] += rgb[3] * values[yd + values.length/2][xd + values[0].length/2];
 					}
 				}
 
