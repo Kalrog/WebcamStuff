@@ -7,6 +7,8 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
+import javax.swing.JSlider;
+
 
 public class Display extends JFrame implements ComponentListener {
 
@@ -14,9 +16,14 @@ public class Display extends JFrame implements ComponentListener {
 	private Canvas canvas;
 	public JCheckBox check1 = new JCheckBox("BW");
 	public JCheckBox check2 = new JCheckBox("Inv");
-	public JCheckBox check3 = new JCheckBox("Gauss");
-	public JCheckBox check4 = new JCheckBox("Sobel");
-	public JCheckBox check5 = new JCheckBox("BW");
+	public JCheckBox check3 = new JCheckBox("Mirror");
+	public JCheckBox check4 = new JCheckBox("Gauss");
+	public JSlider blur = new JSlider(JSlider.HORIZONTAL, 1, 5, 1);
+	public JCheckBox check5 = new JCheckBox("Sobel");
+	public JCheckBox check6 = new JCheckBox("Thresh");
+	public JCheckBox check7 = new JCheckBox("Size");
+	public JSlider min = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+	public JSlider max = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
 	
 	/**
 	 * Creates a new display with given width and height
@@ -33,7 +40,22 @@ public class Display extends JFrame implements ComponentListener {
 	    panel.add(check2);
 	    panel.add(check3);
 	    panel.add(check4);
+	    blur.setMajorTickSpacing(1);
+	    blur.setPaintTicks(true);
+	    panel.add(blur);
 	    panel.add(check5);
+	    panel.add(check6);
+	    panel.add(min);
+	    min.setMajorTickSpacing(25);
+	    min.setMinorTickSpacing(5);
+	    min.setPaintTicks(true);
+	    min.setPaintLabels(true);
+	    panel.add(max);
+	    max.setMajorTickSpacing(25);
+	    max.setMinorTickSpacing(5);
+	    max.setPaintTicks(true);
+	    max.setPaintLabels(true);
+	    panel.add(check7);
 	    
 		this.setSize(width, height);
 		panel.setSize(this.getWidth(), this.getHeight());

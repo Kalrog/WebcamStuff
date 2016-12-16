@@ -41,8 +41,12 @@ public class HelloWorld {
 		Threshold thre = new Threshold();
 
 		Invert inv = new Invert();
+		
+		Mirror mir = new Mirror();
 
 		NonMaximumSuppression nms = new NonMaximumSuppression();
+		
+		Hysteresis hyst = new Hysteresis();
 
 		long time = System.currentTimeMillis();
 		int frames = 0;
@@ -68,12 +72,18 @@ public class HelloWorld {
 			}
 
 			if (dis.check3.isSelected() == true) {
-				log("Starting Gauss blur");
-				img = gauss.apply(img);
-				log("done");
+				img = mir.apply(img);
 			}
 			
 			if (dis.check4.isSelected() == true) {
+				log("Starting Gauss blur");
+				for (int i = 1; i <= dis.blur.getValue(); i++) {
+				img = gauss.apply(img);
+				}
+				log("done");
+			}
+			
+			if (dis.check5.isSelected() == true) {
 			log("Starting Sobel Vertical");
 			one = sobelv.apply(img);
 			log("done");
@@ -91,6 +101,10 @@ public class HelloWorld {
 			log("done");
 
 			img = nms.apply(grad, stre);
+			
+			if (dis.check6.isSelected() == true) {
+			img = hyst.apply(img, dis.min.getValue(), dis.max.getValue());
+			}
 			}
 			
 			log("Starting Threshold");
@@ -105,7 +119,7 @@ public class HelloWorld {
 
 			g = dis.getBuffer().getDrawGraphics();
 
-			if (dis.check5.isSelected() == true) {
+			if (dis.check7.isSelected() == true) {
 			g.drawImage(img, 0, 0, dis.getWidth(), dis.getHeight(), null);
 			dis.addComponentListener(dis);
 			} else {
