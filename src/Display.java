@@ -1,13 +1,11 @@
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Display extends JFrame implements ComponentListener {
+public class Display extends JFrame {
 
 	private JPanel panel;
 	private Canvas canvas;
@@ -24,13 +22,12 @@ public class Display extends JFrame implements ComponentListener {
 		canvas = new Canvas();
 		
 		this.setSize(width, height);
-		panel.setSize(this.getWidth(), this.getHeight());
-		canvas.setSize(this.getWidth(), this.getHeight());
-		
+		panel.setSize(width, height);
+		canvas.setSize(width, height);
+
 		canvas.setBackground(Color.BLACK);
 		canvas.setIgnoreRepaint(true);
 		
-		this.addComponentListener(this);
 		panel.add(canvas);
 		this.add(panel);
 		
@@ -51,28 +48,5 @@ public class Display extends JFrame implements ComponentListener {
 	public BufferStrategy getBuffer() {
 		return canvas.getBufferStrategy();
 	}
-
-	@Override
-	public void componentHidden(ComponentEvent arg0) {
-		
-	}
-
-	@Override
-	public void componentMoved(ComponentEvent arg0) {
-		
-	}
-
-	@Override
-	public void componentResized(ComponentEvent arg0) {
-		panel.setSize(this.getWidth(), this.getHeight());
-		canvas.setSize(this.getWidth(), this.getHeight());
-		panel.validate();
-	}
-
-	@Override
-	public void componentShown(ComponentEvent arg0) {
-		
-	}
-	
 
 }
