@@ -8,8 +8,9 @@ public class EditImage {
 
 	public static void main(String[] args) throws Exception {
 		if (args.length > 1) {
-			BufferedImage img, one, two,inte,grad;
-			img = ImageIO.read(new File(args[0]));
+			BufferedImage img,org, one, two,inte,grad;
+			org = ImageIO.read(new File(args[0]));
+			img = org;
 			GrayScaleConverter gary = new GrayScaleConverter();
 
 			Kernel gauss = new Kernel(new int[][] { { 2, 4, 5, 4, 2 },
@@ -31,6 +32,10 @@ public class EditImage {
 			NonMaximumSuppression noma = new NonMaximumSuppression();
 			
 			Hysteresis hys = new Hysteresis();
+			
+			ImageAdder add = new ImageAdder();
+			
+			Invert in = new Invert();
 
 			img = gary.apply(img);
 			img = gauss.apply(img);
@@ -41,9 +46,17 @@ public class EditImage {
 			grad = sob.makeGradient(two, one);
 			inte = sob.combine(one, two);
 			
-			img = noma.apply(grad,inte);
+			//img = noma.apply(grad,inte);
+			img = inte;
 			
+			//img = in.apply(img);
+			org = gauss.apply(org);
+			
+			//org = add.add(-1, img, 1, org);
+			org = add.add(-1.3, img, 1, org);
+			img = noma.apply(grad,inte);
 			img = hys.apply(img,20,8);
+			img = add.add(-1, img, 1, org);
 			
 			ImageIO.write(img, "PNG", new File(args[1]));
 
