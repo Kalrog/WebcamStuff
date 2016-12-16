@@ -26,12 +26,6 @@ public class Kernel extends ImageModifier {
 		for (int x = 1; x < img.getWidth() - 1; x++) {
 			for (int y = 1; y < img.getHeight() - 1; y++) {
 				int total[] = new int[4];
-				/*
-				 * 0 - Alpha 1 - Red 2 - Green 3 - Blue
-				 */
-				total[1] = 0;
-				total[2] = 0;
-				total[3] = 0;
 				total[0] = ColorConverter.extractRGB(org.getRGB(x, y))[0];
 				for (int xd = -1; xd <= 1; xd++) {
 					for (int yd = -1; yd <= 1; yd++) {
