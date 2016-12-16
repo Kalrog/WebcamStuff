@@ -1,8 +1,8 @@
 import java.awt.image.BufferedImage;
 
 
-public class ImgToArray {
-	public static int[][][] convert(BufferedImage org) {
+public class ArrayConverter {
+	public static int[][][] imgtoarray(BufferedImage org) {
 		int[][][] img = new int[3][org.getWidth()][org.getHeight()];
 		for (int x = 1; x < org.getWidth() - 1; x++) {
 			for (int y = 1; y < org.getHeight() - 1; y++) {
