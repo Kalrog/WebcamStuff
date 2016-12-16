@@ -2,15 +2,20 @@ import java.awt.image.BufferedImage;
 
 public class Kernel extends ImageModifier {
 	int[][] values;
-	int kernelsum;
+	int possum;
+	int negsum;
 	int threshold;
 
 	public Kernel(int[][] values) {
 		this.values = values;
-		this.kernelsum = 0;
+		this.possum = 0;
 		for (int x = 0; x < values[0].length; x++) {
 			for (int y = 0; y < values.length; y++) {
-				kernelsum += values[y][x];
+				if( values[y][x] > 0){
+				possum += values[y][x];
+				}else{
+				negsum += values[y][x];
+				}
 			}
 		}
 	}
@@ -38,10 +43,7 @@ public class Kernel extends ImageModifier {
 				}
 
 				for (int i = 1; i <= 3; i++) {
-					total[i] = Math.abs(total[i]);
-					if (kernelsum != 0) {
-						total[i] /= kernelsum;
-					}
+					total[i] = (int) ColorConverter.map(total[i], 255*negsum, 255*possum, 0, 255);
 				}
 
 				int argb = ColorConverter.makeRGB(total);

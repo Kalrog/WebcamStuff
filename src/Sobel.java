@@ -17,7 +17,7 @@ public class Sobel {
 					int colorone[]=ColorConverter.extractRGB(one.getRGB(x, y));
 					int colortwo[]=ColorConverter.extractRGB(two.getRGB(x, y));
 					for (int i = 1; i <= 3; i++) {
-						total[i] = (int) Math.sqrt(Math.pow(colorone[i],2)+Math.pow(colortwo[i],2));
+						total[i] = (int) Math.sqrt(Math.pow(colorone[i],2)+Math.pow(colortwo[i]-127,2));
 						total[i] = (int) ColorConverter.map(total[i],0,360,0,255);
 					}
 					total[0] = 255;
