@@ -7,16 +7,16 @@ public class NonMaximumSuppression {
 		for (int x = 1; x < org[0][0].length - 1; x++) {
 			for (int y = 1; y < org[0].length - 1; y++) {
 				int nx, ny;
-				if( org[1][x][y] < -45 ) {
+				if( org[1][x][y] < -67.5 ) {
 					nx = 1;
 					ny = 0;
-				} else if( org[1][x][y] < 0) {
+				} else if( org[1][x][y] < -22.5) {
 					nx = -1;
 					ny = 1;
-				} else if( org[1][x][y] < 45) {
+				} else if( org[1][x][y] < 22.5) {
 					nx = 0;
 					ny = 1;
-				} else if( org[1][x][y] < 90) {
+				} else if( org[1][x][y] < 67.5) {
 					nx = 1;
 					ny = 1;
 				} else {
