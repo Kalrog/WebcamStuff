@@ -1,4 +1,4 @@
-import java.awt.image.BufferedImage;
+
 
 public class Hysteresis {
 	int[][] result = null;
