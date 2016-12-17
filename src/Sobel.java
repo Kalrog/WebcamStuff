@@ -13,8 +13,8 @@ public class Sobel {
 		this.V = V;
 	}
 	public int[][][] apply(BufferedImage org){
-		int[][] horizontal = ImgToArray.convert(H.apply(org))[1];
-		int[][] vertical = ImgToArray.convert(V.apply(org))[1];
+		int[][] horizontal = ArrayConverter.imgtoarray(H.apply(org))[1];
+		int[][] vertical = ArrayConverter.imgtoarray(V.apply(org))[1];
 		int[][][] result = new int[2][org.getWidth()][org.getHeight()];
 		for (int x = 1; x + 1 < horizontal.length;x++){
 			for (int y = 1; y + 1 < horizontal[x].length;y++){
