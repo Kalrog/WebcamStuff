@@ -13,4 +13,17 @@ public class ArrayConverter {
 		}
 		return img;
 	}
+	public static BufferedImage arraytoimg(int org[][][]) {
+		BufferedImage img = new BufferedImage(org[0].length,org[0][0].length, BufferedImage.TYPE_INT_ARGB);
+		for (int x = 0; x < org[0][0].length; x++) {
+			for (int y = 0; y < org[0][0].length; y++) {
+				int[] color = new int[3];
+				for (int i = 0; i <= 3; i++) {
+					color[i] = org[i][x][y];
+				}
+				img.setRGB(x, y, ColorConverter.makeRGB(color));
+			}
+		}
+		return img;
+	}
 }
