@@ -90,19 +90,21 @@ public class HelloWorld {
 
 				imgarray = nms.apply(sobeloutput);
 
+				//imgarray = sobeloutput[0];
+				
 				if (dis.check6.isSelected() == true) {
 					imgarray = hyst.apply(imgarray, dis.min.getValue(), dis.max.getValue());
-					int [][][] finalimg = new int[4][imgarray.length][imgarray[0].length];
-					for(int x = 0; x < finalimg[0].length;x++){
-						for(int y = 0; y< finalimg[0][0].length; y++){
-							finalimg[0][x][y]=255;
-							finalimg[1][x][y]=(int) ColorConverter.map(imgarray[x][y],0,1000000000,0,255);
-							finalimg[2][x][y]=(int) ColorConverter.map(imgarray[x][y],0,1000000000,0,255);
-							finalimg[3][x][y]=(int) ColorConverter.map(imgarray[x][y],0,1000000000,0,255);
-						}
-					}
-					img = ArrayConverter.arraytoimg(finalimg);
 				}
+				int [][][] finalimg = new int[4][imgarray.length][imgarray[0].length];
+				for(int x = 0; x < finalimg[0].length;x++){
+					for(int y = 0; y< finalimg[0][0].length; y++){
+						finalimg[0][x][y]= 255;
+						finalimg[1][x][y]= (int) ColorConverter.map(imgarray[x][y],0,2500,0,255);
+						finalimg[2][x][y]= (int) ColorConverter.map(imgarray[x][y],0,2500,0,255);
+						finalimg[3][x][y]= (int) ColorConverter.map(imgarray[x][y],0,2500,0,255);
+					}
+				}
+				img = ArrayConverter.arraytoimg(finalimg);
 			}
 
 			log("Starting Threshold");

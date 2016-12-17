@@ -20,7 +20,7 @@ public class Hysteresis {
 	private boolean checkPixel(int x, int y) {
 		int value = result[x][y];
 		if (value > upper) {
-			result[x][y] = 1000000000;
+			result[x][y] = 2500;
 			return true;
 		} else if (value < lower || x <= 0 || y <= 0 || x >= result.length || y >= result[x].length) {
 			result[x][y] = 0;
@@ -30,7 +30,7 @@ public class Hysteresis {
 			for (int xd = -1; xd <= 1; xd++) {
 				for (int yd = -1; yd <= 1; yd++) {
 					if(checkPixel(x+xd,y+yd)){
-						result[x][y] = 1000000000;
+						result[x][y] = 2500;
 						return true;
 					}
 				}

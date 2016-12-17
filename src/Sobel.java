@@ -18,6 +18,12 @@ public class Sobel {
 		int[][][] result = new int[2][org.getWidth()][org.getHeight()];
 		for (int x = 1; x + 1 < horizontal.length;x++){
 			for (int y = 1; y + 1 < horizontal[x].length;y++){
+				horizontal[x][y] =  (int) ColorConverter.map(horizontal[x][y], 0, 255, 255 * H.negsum, 255 * H.possum);
+				vertical[x][y] =  (int) ColorConverter.map(vertical[x][y], 0, 255, 255 * V.negsum, 255 * V.possum);
+				if(horizontal[x][y] < 0){
+					vertical[x][y] = vertical[x][y] * -1;
+					horizontal[x][y] = horizontal[x][y] * -1;
+				}
 				result[0][x][y] = (int) Math.sqrt(Math.pow(horizontal[x][y],2)+Math.pow(horizontal[x][y],2));
 				result[1][x][y] = (int) ColorConverter.map(Math.atan2(vertical[x][y], horizontal[x][y]), -Math.PI/2, Math.PI/2, -90, 90);
 			}

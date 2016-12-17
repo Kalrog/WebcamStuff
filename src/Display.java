@@ -22,8 +22,8 @@ public class Display extends JFrame implements ComponentListener {
 	public JCheckBox check5 = new JCheckBox("Sobel");
 	public JCheckBox check6 = new JCheckBox("Thresh");
 	public JCheckBox check7 = new JCheckBox("Size");
-	public JSlider min = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
-	public JSlider max = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+	public JSlider min = new JSlider(JSlider.HORIZONTAL, 0, 2500, 1250);
+	public JSlider max = new JSlider(JSlider.HORIZONTAL, 0, 2500, 1250);
 	
 	/**
 	 * Creates a new display with given width and height
@@ -46,13 +46,13 @@ public class Display extends JFrame implements ComponentListener {
 	    panel.add(check5);
 	    panel.add(check6);
 	    panel.add(min);
-	    min.setMajorTickSpacing(25);
-	    min.setMinorTickSpacing(5);
+	    min.setMajorTickSpacing(500);
+	    min.setMinorTickSpacing(50);
 	    min.setPaintTicks(true);
 	    min.setPaintLabels(true);
 	    panel.add(max);
-	    max.setMajorTickSpacing(25);
-	    max.setMinorTickSpacing(5);
+	    max.setMajorTickSpacing(500);
+	    max.setMinorTickSpacing(50);
 	    max.setPaintTicks(true);
 	    max.setPaintLabels(true);
 	    panel.add(check7);
