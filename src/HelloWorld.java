@@ -99,9 +99,9 @@ public class HelloWorld {
 				for(int x = 0; x < finalimg[0].length;x++){
 					for(int y = 0; y< finalimg[0][0].length; y++){
 						finalimg[0][x][y]= 255;
-						finalimg[1][x][y]= (int) ColorConverter.map(imgarray[x][y],0,2500,0,255);
-						finalimg[2][x][y]= (int) ColorConverter.map(imgarray[x][y],0,2500,0,255);
-						finalimg[3][x][y]= (int) ColorConverter.map(imgarray[x][y],0,2500,0,255);
+						finalimg[1][x][y]= (int) ColorConverter.map(imgarray[x][y],0,4000,0,255);
+						finalimg[2][x][y]= (int) ColorConverter.map(imgarray[x][y],0,4000,0,255);
+						finalimg[3][x][y]= (int) ColorConverter.map(imgarray[x][y],0,4000,0,255);
 					}
 				}
 				img = ArrayConverter.arraytoimg(finalimg);

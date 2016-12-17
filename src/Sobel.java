@@ -24,7 +24,8 @@ public class Sobel {
 					vertical[x][y] = vertical[x][y] * -1;
 					horizontal[x][y] = horizontal[x][y] * -1;
 				}
-				result[0][x][y] = (int) Math.sqrt(Math.pow(horizontal[x][y],2)+Math.pow(horizontal[x][y],2));
+				result[0][x][y] = (int) Math.sqrt(Math.pow(horizontal[x][y],2)+Math.pow(vertical[x][y],2));
+				//System.out.println(result[0][x][y]);
 				result[1][x][y] = (int) ColorConverter.map(Math.atan2(vertical[x][y], horizontal[x][y]), -Math.PI/2, Math.PI/2, -90, 90);
 			}
 		}
